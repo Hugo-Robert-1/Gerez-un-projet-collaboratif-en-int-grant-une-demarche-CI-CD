@@ -20,21 +20,21 @@ jobs:
           java-version: '11'
 
       - name: Build with Maven
-        working-directory: backend
+        working-directory: back
         run: mvn -B clean package
 
       - name: Run tests with coverage (JaCoCo)
-        working-directory: backend
+        working-directory: back
         run: mvn clean verify jacoco:report
 
       - name: Upload JUnit test reports
         uses: actions/upload-artifact@v4
         with:
           name: backend-junit-reports
-          path: backend/target/surefire-reports/
+          path: back/target/surefire-reports/
 
       - name: Upload JaCoCo coverage report
         uses: actions/upload-artifact@v4
         with:
           name: backend-coverage
-          path: backend/target/site/jacoco/
+          path: back/target/site/jacoco/
