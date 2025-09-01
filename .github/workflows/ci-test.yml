@@ -58,8 +58,8 @@ jobs:
         working-directory: front
         run: npm run coverage
 
-      - name: Archive Angular test results
+      - name: Upload Angular coverage report
         uses: actions/upload-artifact@v4
         with:
           name: frontend-coverage
-          path: frontend/coverage/bobapp
+          path: front/coverage/bobapp
