@@ -7,7 +7,7 @@ on:
 
 jobs:
   backend-tests:
-    name: Backend (Spring Boot)
+    name: Backend (Spring Boot) Run tests and generate test coverage
     runs-on: ubuntu-latest
     steps: 
       - name: Checkout code
@@ -38,3 +38,28 @@ jobs:
         with:
           name: backend-coverage
           path: back/target/site/jacoco/
+  frontend-tests:
+    name: Frontend (Angular) Run tests and generate test coverage
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+
+      - name: Install frontend dependencies
+        working-directory: front
+        run: npm ci
+
+      - name: Run test with coverage
+        working-directory: front
+        run: npm run coverage
+
+      - name: Archive Angular test results
+        uses: actions/upload-artifact@v4
+        with:
+          name: frontend-coverage
+          path: frontend/coverage/bobapp
