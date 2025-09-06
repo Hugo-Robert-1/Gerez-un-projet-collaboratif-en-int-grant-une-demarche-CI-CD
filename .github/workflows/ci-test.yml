@@ -27,9 +27,6 @@ jobs:
         working-directory: back
         run: mvn clean verify jacoco:report
 
-      - name: debug - Show JaCoCo report
-        run: ls -l back/target/site/jacoco
-
       - name: Upload JUnit test reports
         uses: actions/upload-artifact@v4
         with:
@@ -108,3 +105,15 @@ jobs:
         uses: SonarSource/sonarqube-scan-action@v5
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        with:
+          projectBaseDir: .
+          extraProperties: |
+            sonar.projectKey=Hugo-Robert-1_Gerez-un-projet-collaboratif-en-int-grant-une-demarche-CI-CD
+            sonar.organization=hugo-robert-1
+            sonar.sources=back/src/main/java,front/src/app
+            sonar.tests=back/src/test/java,front/src/app
+            sonar.test.inclusions=**/*.spec.ts
+            sonar.java.binaries=back/target/classes
+            sonar.coverage.jacoco.xmlReportPaths=back/target/site/jacoco/jacoco.xml
+            sonar.javascript.lcov.reportPaths=front/coverage/bobapp/lcov.info
+            sonar.sourceEncoding=UTF-8
