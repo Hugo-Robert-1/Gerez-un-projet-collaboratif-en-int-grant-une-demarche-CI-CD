@@ -5,9 +5,11 @@ on:
     branches:
       - next
       - main
+  push:
+    branches:
+      - main
 
 jobs:
-
   backend-tests:
     name: Backend (Spring Boot) Tests & Coverage
     runs-on: ubuntu-latest
