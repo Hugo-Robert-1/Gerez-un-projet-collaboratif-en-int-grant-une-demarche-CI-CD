@@ -101,6 +101,17 @@ jobs:
         working-directory: front
         run: npm ci
 
+      - name: Debug coverage files
+        run: |
+          echo "=== Backend coverage files ==="
+          ls -R back/target/site/jacoco || true
+          cat back/target/site/jacoco/jacoco.xml | head -20 || true
+          
+          echo "=== Frontend coverage files ==="
+          ls -R front/coverage || true
+          find front/coverage -name "*.info" || true
+          cat front/coverage/bobapp/lcov.info | head -20 || true  
+
       - name: Run SonarCloud Scan
         uses: SonarSource/sonarqube-scan-action@v5
         env:
