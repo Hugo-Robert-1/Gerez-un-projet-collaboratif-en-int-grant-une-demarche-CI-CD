@@ -107,13 +107,13 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
           projectBaseDir: .
-          extraProperties: |
-            sonar.projectKey=Hugo-Robert-1_Gerez-un-projet-collaboratif-en-int-grant-une-demarche-CI-CD
-            sonar.organization=hugo-robert-1
-            sonar.sources=back/src/main/java,front/src/app
-            sonar.tests=back/src/test/java,front/src/app
-            sonar.test.inclusions=**/*.spec.ts
-            sonar.java.binaries=back/target/classes
-            sonar.coverage.jacoco.xmlReportPaths=back/target/site/jacoco/jacoco.xml
-            sonar.javascript.lcov.reportPaths=front/coverage/bobapp/lcov.info
-            sonar.sourceEncoding=UTF-8
+          args: >
+            -Dsonar.projectKey=Hugo-Robert-1_Gerez-un-projet-collaboratif-en-int-grant-une-demarche-CI-CD
+            -Dsonar.organization=hugo-robert-1
+            -Dsonar.sources=back/src/main/java,front/src/app
+            -Dsonar.tests=back/src/test/java,front/src/app
+            -Dsonar.test.inclusions=**/*.spec.ts
+            -Dsonar.java.binaries=back/target/classes
+            -Dsonar.coverage.jacoco.xmlReportPaths=back/target/site/jacoco/jacoco.xml
+            -Dsonar.javascript.lcov.reportPaths=front/coverage/bobapp/lcov.info
+            -Dsonar.sourceEncoding=UTF-8
